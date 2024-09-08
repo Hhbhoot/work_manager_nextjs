@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -17,26 +18,26 @@ const Footer = () => {
             </p>
           </div>
 
-          <ul className="flex flex-col space-y-4 ">
+          <ul className="flex flex-col items-start justify-start space-y-4 ">
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <Link href="/" className="hover:text-gray-400">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <Link href="/show-task" className="hover:text-gray-400">
                 Show Task
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <Link href="/add-task" className="hover:text-gray-400">
                 Add Task
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <Link href="#" className="hover:text-gray-400">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
 

@@ -42,13 +42,13 @@ export const GET = async (request) => {
 };
 
 export const POST = async (request) => {
-  const { userId, title, content } = await request.json();
+  const { userId, title, description, dueDate } = await request.json();
 
-  if (!userId || !title || !content) {
+  if (!userId || !title || !description) {
     return NextResponse.json(
       {
         statusText: "Bad Request",
-        message: "User ID, title, and content are required",
+        message: "User ID, title, and description are required",
       },
       { status: 400 }
     );
@@ -65,7 +65,8 @@ export const POST = async (request) => {
     const newTask = await Task.create({
       userId,
       title,
-      content,
+      description,
+      dueDate,
     });
 
     return NextResponse.json(
