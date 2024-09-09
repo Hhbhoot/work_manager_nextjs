@@ -33,12 +33,12 @@ const Header = () => {
         <div>
           <ul className="flex items-center gap-5">
             <li>
-              <Link href="!#">
+              <Link href="/signup">
                 <h1 className="text-white font-semibold">Sign Up</h1>
               </Link>
             </li>
             <li>
-              <Link href="!#">
+              <Link href="/login">
                 <h1 className="text-white font-semibold">Login</h1>
               </Link>
             </li>

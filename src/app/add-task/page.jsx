@@ -75,7 +75,7 @@ const AddTask = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-start justify-center mx-auto mt-4 w-[35%] space-y-5"
+        className="flex flex-col items-start justify-center mx-auto mt-4 w-[35%] gap-y-5"
       >
         <div className="w-full flex flex-col space-y-2">
           <label htmlFor="task_title" className="px-1">
@@ -86,7 +86,7 @@ const AddTask = () => {
             name="task_title"
             id="task_title"
             placeholder="Enter your task title"
-            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-1  font-medium "
+            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
             onChange={handleInputChange}
             value={details.task_title}
           />
@@ -101,7 +101,7 @@ const AddTask = () => {
             id="task_description"
             rows="5"
             placeholder="Enter your task description"
-            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-1  font-medium"
+            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium"
             onChange={handleInputChange}
             value={details.task_description}
           />
@@ -114,7 +114,7 @@ const AddTask = () => {
           <select
             name="task_status"
             id="task_status"
-            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-1  font-medium  cursor-pointer "
+            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium  cursor-pointer "
             onChange={handleInputChange}
             value={details.task_status}
           >
@@ -138,22 +138,22 @@ const AddTask = () => {
             type="date"
             name="task_dueDate"
             id="task_dueDate"
-            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-1  font-medium "
+            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
             onChange={handleInputChange}
             value={details.task_dueDate}
           />
         </div>
 
-        <div className="w-full flex justify-center items-center gap-5  ">
+        <div className="w-full flex justify-center items-center gap-5 mt-5  ">
           <button
-            className="w-full bg-blue-600 rounded-md focus:outline-none px-2 py-2  font-medium"
+            className="w-full bg-blue-600 rounded-md focus:outline-none px-2 py-3  font-medium"
             type="submit"
           >
             Add Task
           </button>
 
           <button
-            className="w-full bg-red-600 rounded-md focus:outline-none px-2 py-2  font-medium"
+            className="w-full bg-red-600 rounded-md focus:outline-none px-2 py-3  font-medium"
             onClick={handleCancelClick}
           >
             Cancel

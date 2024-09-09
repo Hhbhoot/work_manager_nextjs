@@ -1,8 +1,12 @@
-"use client";
 import React from "react";
+import SignUp from "./SignUp";
 
-const SignUp = () => {
-  return <div></div>;
+export const metadata = {
+  title: "Work Manager | Sign Up",
 };
 
-export default SignUp;
+const SignUpPage = () => {
+  return <SignUp />;
+};
+
+export default SignUpPage;

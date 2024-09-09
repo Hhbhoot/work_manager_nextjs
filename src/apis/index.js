@@ -13,7 +13,7 @@ export const http = axios.create({
 export const Login = async (data, params, headers) =>
   http.post("/auth/login", data, { params, headers });
 
-export const Register = async (data, params, headers) =>
+export const signup = async (data, params, headers) =>
   http.post("/api/user", data, { params, headers });
 
 export const addTask = async (data, params, headers) =>

@@ -24,14 +24,14 @@ export const GET = async (request) => {
 
 export const POST = async (request) => {
   console.log(process.env.NODE_ENV);
-  const { name, email, password } = await request.json();
+  const { name, email, password, age, gender, about } = await request.json();
 
   try {
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !age || !gender) {
       return NextResponse.json(
         {
           statusText: "Bad Request",
-          message: "Name, email, and password are required",
+          message: "Please provide all required fields",
         },
         {
           status: 400,
@@ -73,6 +73,9 @@ export const POST = async (request) => {
       name,
       email,
       password: hashedPassword,
+      age,
+      gender,
+      about,
     });
 
     const token = jwt.sign(
@@ -83,11 +86,17 @@ export const POST = async (request) => {
       }
     );
 
-    const response = NextResponse.json({
-      status: 201,
-      statusText: "Created",
-      data: newUser,
-    });
+    const response = NextResponse.json(
+      {
+        status: "success",
+        statusText: "Created",
+        message: "User created successfully",
+        data: newUser,
+      },
+      {
+        status: 201,
+      }
+    );
 
     response.cookies.set("AuthToken", token, {
       httpOnly: true,

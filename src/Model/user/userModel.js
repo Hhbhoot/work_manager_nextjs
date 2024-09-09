@@ -23,6 +23,20 @@ const UserSchema = new mongoose.Schema(
       minlength: 8,
       select: false,
     },
+
+    age: {
+      type: Number,
+    },
+
+    gender: {
+      type: String,
+      enum: ["male", "female", "other"],
+    },
+
+    about: {
+      type: String,
+      maxlength: 500,
+    },
   },
   {
     timestamps: true,
