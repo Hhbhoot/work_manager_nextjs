@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className} style={{ backgroundColor: "#000" }}>
         <Header />
-        <div className="w-full min-h-screen">
+        <div className="w-full ">
           <Toaster />
           {children}
         </div>

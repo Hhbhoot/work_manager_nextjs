@@ -10,8 +10,8 @@ export const http = axios.create({
 //   return config;
 // });
 
-export const Login = async (data, params, headers) =>
-  http.post("/auth/login", data, { params, headers });
+export const userLogin = async (data, params, headers) =>
+  http.post("/api/user/login", data, { params, headers });
 
 export const signup = async (data, params, headers) =>
   http.post("/api/user", data, { params, headers });

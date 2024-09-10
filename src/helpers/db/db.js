@@ -6,10 +6,10 @@ const connectionObject = {
 
 export const connectDB = async () => {
   try {
-    // if (connectionObject.isConnected !== null) {
-    //   console.log("Db already connected");
-    //   return;
-    // }
+    if (connectionObject.isConnected !== null) {
+      console.log("Db already connected");
+      return;
+    }
     const db = await mongoose.connect(process.env.MONGO_DB_URI, {
       connectTimeoutMS: 30000,
     });

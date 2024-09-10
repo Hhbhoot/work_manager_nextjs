@@ -1,9 +1,11 @@
-"use client";
 import React from "react";
-const Login = () => {
-  document.title = "Work Manager | Login";
+import Login from "./Login";
 
-  return <div></div>;
+export const metadata = {
+  title: "Work Manager | Login ",
+};
+const LoginPage = () => {
+  return <Login />;
 };
 
-export default Login;
+export default LoginPage;

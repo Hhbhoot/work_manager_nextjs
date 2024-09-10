@@ -233,6 +233,7 @@ const SignUp = () => {
           <button
             className="w-full bg-red-600 rounded-md focus:outline-none px-2 py-3  font-medium"
             onClick={handleResetClick}
+            type="button"
           >
             Reset
           </button>
