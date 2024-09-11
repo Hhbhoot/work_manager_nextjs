@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowDropdown } from "react-icons/io";
 import SignUpSvg from "../../../public/img/signup.svg";
 import Image from "next/image";
@@ -82,163 +82,173 @@ const SignUp = () => {
     });
   };
 
+  useEffect(() => {
+    // This effect will run when the component mounts
+    const signupSection = document.getElementById("signup-section");
+    if (signupSection) {
+      signupSection.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []); // Empty dependency array to run on component mount
+
   return (
-    <div className="w-full my-10 text-white ">
-      <div className="flex items-center justify-center w-fit mx-auto">
-        <Image
-          src={SignUpSvg}
-          alt="logo"
-          className="rounded-xl"
-          width={300}
-          height={200}
-          style={{
-            objectFit: "cover",
-            objectPosition: "center",
-            borderRadius: "20px",
-          }}
-        />
-      </div>
-
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col items-start justify-center mx-auto mt-6 w-[35%] gap-y-5"
-      >
-        <div className="flex  items-center justify-between gap-5 w-full">
-          <div className="w-full flex flex-col space-y-2">
-            <label htmlFor="name" className="px-1">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter Name Here"
-              className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
-              onChange={handleInputChange}
-              value={details.name}
-            />
-          </div>
-
-          <div className="w-full flex flex-col space-y-2">
-            <label htmlFor="email" className="px-1 ">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter Email Here"
-              className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium"
-              onChange={handleInputChange}
-              value={details.email}
-            />
-          </div>
-        </div>
-        <div className="flex  items-center justify-between gap-5 w-full">
-          <div className="w-full flex flex-col space-y-2 relative">
-            <label htmlFor="gender" className="px-1">
-              Gender
-            </label>
-            <select
-              name="gender"
-              id="gender"
-              className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium  cursor-pointer "
-              onChange={handleInputChange}
-              value={details.gender}
-            >
-              <option value="" disabled>
-                Select Gender
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-            <span className="absolute right-2 top-[60%] pointer-events-none  -translate-y-1/2">
-              <IoIosArrowDropdown className="text-white" />
-            </span>
-          </div>
-
-          <div className="w-full flex flex-col space-y-2">
-            <label htmlFor="age" className="px-1">
-              Age
-            </label>
-            <input
-              type="number"
-              name="age"
-              id="age"
-              placeholder="Enter age here"
-              className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
-              onChange={handleInputChange}
-              value={details.age}
-            />
-          </div>
-        </div>
-
-        <div className="w-full flex flex-col space-y-2">
-          <label htmlFor="about" className="px-1">
-            About
-          </label>
-          <textarea
-            type="text"
-            name="about"
-            id="about"
-            rows="3"
-            placeholder="Enter about your self"
-            className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-1  font-medium "
-            onChange={handleInputChange}
-            value={details.about}
+    <div className="w-full my-10 text-white " id="signup-section">
+      <div className="flex items-center justify-around">
+        <div className="">
+          <Image
+            src={SignUpSvg}
+            alt="logo"
+            className="rounded-xl"
+            width={400}
+            height={200}
+            style={{
+              objectFit: "cover",
+              objectPosition: "center",
+              borderRadius: "20px",
+            }}
           />
         </div>
 
-        <div className="flex  items-center justify-between gap-5 w-full">
-          <div className="w-full flex flex-col space-y-2">
-            <label htmlFor="password" className="px-1">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter password"
-              className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
-              onChange={handleInputChange}
-              value={details.password}
-            />
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-start justify-center mt-6 w-[45%] gap-y-5"
+        >
+          <div className="flex  items-center justify-between gap-5 w-full">
+            <div className="w-full flex flex-col space-y-2">
+              <label htmlFor="name" className="px-1">
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter Name Here"
+                className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
+                onChange={handleInputChange}
+                value={details.name}
+              />
+            </div>
+
+            <div className="w-full flex flex-col space-y-2">
+              <label htmlFor="email" className="px-1 ">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter Email Here"
+                className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium"
+                onChange={handleInputChange}
+                value={details.email}
+              />
+            </div>
+          </div>
+          <div className="flex  items-center justify-between gap-5 w-full">
+            <div className="w-full flex flex-col space-y-2 relative">
+              <label htmlFor="gender" className="px-1">
+                Gender
+              </label>
+              <select
+                name="gender"
+                id="gender"
+                className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium  cursor-pointer "
+                onChange={handleInputChange}
+                value={details.gender}
+              >
+                <option value="" disabled>
+                  Select Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <span className="absolute right-2 top-[60%] pointer-events-none  -translate-y-1/2">
+                <IoIosArrowDropdown className="text-white" />
+              </span>
+            </div>
+
+            <div className="w-full flex flex-col space-y-2">
+              <label htmlFor="age" className="px-1">
+                Age
+              </label>
+              <input
+                type="number"
+                name="age"
+                id="age"
+                placeholder="Enter age here"
+                className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
+                onChange={handleInputChange}
+                value={details.age}
+              />
+            </div>
           </div>
 
           <div className="w-full flex flex-col space-y-2">
-            <label htmlFor="confirmPassword" className="px-1">
-              Confirm Password
+            <label htmlFor="about" className="px-1">
+              About
             </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="Enter password again"
-              className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
+            <textarea
+              type="text"
+              name="about"
+              id="about"
+              rows="3"
+              placeholder="Enter about your self"
+              className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-1  font-medium "
               onChange={handleInputChange}
-              value={details.confirmPassword}
+              value={details.about}
             />
           </div>
-        </div>
 
-        <div className="w-full flex justify-center items-center gap-5 mt-5 ">
-          <button
-            className="w-full bg-blue-600 rounded-md focus:outline-none px-2 py-3  font-medium"
-            type="submit"
-          >
-            Sign Up
-          </button>
+          <div className="flex  items-center justify-between gap-5 w-full">
+            <div className="w-full flex flex-col space-y-2">
+              <label htmlFor="password" className="px-1">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter password"
+                className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
+                onChange={handleInputChange}
+                value={details.password}
+              />
+            </div>
 
-          <button
-            className="w-full bg-red-600 rounded-md focus:outline-none px-2 py-3  font-medium"
-            onClick={handleResetClick}
-            type="button"
-          >
-            Reset
-          </button>
-        </div>
-      </form>
+            <div className="w-full flex flex-col space-y-2">
+              <label htmlFor="confirmPassword" className="px-1">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="Enter password again"
+                className="w-full bg-gray-600 rounded-md focus:outline-none px-2 py-2  font-medium "
+                onChange={handleInputChange}
+                value={details.confirmPassword}
+              />
+            </div>
+          </div>
+
+          <div className="w-full flex justify-center items-center gap-5 mt-5 ">
+            <button
+              className="w-full bg-blue-600 rounded-md focus:outline-none px-2 py-3  font-medium"
+              type="submit"
+            >
+              Sign Up
+            </button>
+
+            <button
+              className="w-full bg-red-600 rounded-md focus:outline-none px-2 py-3  font-medium"
+              onClick={handleResetClick}
+              type="button"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
