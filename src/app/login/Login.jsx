@@ -5,8 +5,10 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import userLoginSvg from "../../../public/img/userLogin.svg";
+import { useAuthContex } from "@/Contex/AuthContex";
 const Login = () => {
   const router = useRouter();
+  const { user, setUser } = useAuthContex();
 
   const [details, setDetails] = useState({
     email: "",
@@ -35,6 +37,8 @@ const Login = () => {
       toast.success(data?.message, {
         id: toastId,
       });
+
+      setUser(data?.data?.user);
 
       setDetails({
         email: "",

@@ -8,7 +8,6 @@ export const middleware = async (request) => {
   if (path === "/api/user/login" || path === "/api/user") {
     return NextResponse.next();
   }
-
   if (!token && !isPublicPaths) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

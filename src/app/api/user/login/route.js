@@ -56,6 +56,9 @@ export const POST = async (request) => {
       {
         status: "success",
         message: "User logged in successfully",
+        data: {
+          user,
+        },
       },
       {
         status: 200,
@@ -67,6 +70,7 @@ export const POST = async (request) => {
       sameSite: "strict",
       path: "/",
       maxAge: 10 * 24 * 60 * 60,
+      expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
       secure: process.env.NODE_ENV === "production",
     });
 

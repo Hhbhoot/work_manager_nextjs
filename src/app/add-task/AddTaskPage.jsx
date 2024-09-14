@@ -5,8 +5,11 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import loginsvg from "../../../public/img/login.svg";
 import toast from "react-hot-toast";
 import { addTask } from "@/apis";
+import { useAuthContex } from "@/Contex/AuthContex";
 
 const AddTaskPage = () => {
+  const { user } = useAuthContex();
+
   const [details, setDetails] = useState({
     task_title: "",
     task_description: "",
@@ -27,7 +30,7 @@ const AddTaskPage = () => {
         description: details.task_description,
         dueDate: details.task_dueDate,
         status: details.task_status,
-        userId: "66cdf72afbc092c0d099dd87",
+        userId: user?._id,
       };
 
       const { data } = await addTask(docs);
