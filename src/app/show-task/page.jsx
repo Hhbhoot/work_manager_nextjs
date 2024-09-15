@@ -1,14 +1,11 @@
-"use client";
 import React from "react";
-
-const metadata = {
+import ShowTask from "./ShowTask";
+export const metadata = {
   title: "Work Manager | Show Task",
 };
 
-const ShowTask = () => {
-  document.title = metadata.title;
-
-  return <div className="text-white "> Show Task</div>;
+const ShowTaskPage = () => {
+  return <ShowTask />;
 };
 
-export default ShowTask;
+export default ShowTaskPage;

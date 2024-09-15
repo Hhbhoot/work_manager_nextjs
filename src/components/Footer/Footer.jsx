@@ -44,12 +44,20 @@ const Footer = () => {
           {/* Right section - Social Links and Contact */}
           <ul className="flex flex-col items-start justify-start space-y-4 ">
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <a
+                href="https://www.linkedin.com/in/hitesh-bhoot-2b46972b1/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 LinkedIn
               </a>
             </li>
             <li>
-              <a href="#" className="hover:text-gray-400">
+              <a
+                href="https://github.com/hhbhoot"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </li>

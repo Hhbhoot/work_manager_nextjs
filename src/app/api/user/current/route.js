@@ -1,17 +1,18 @@
 import User from "@/Model/user/userModel";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
+import { connectDB } from "@/helpers/db/db";
+
+connectDB();
 
 export const GET = async (request) => {
   const token = request?.cookies?.get("AuthToken")?.value;
-  console.log(token);
   if (!token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const user = await User.findById(decoded.userId);
-    console.log(user);
     if (!user) {
       return NextResponse.redirect(new URL("/login", request.url));
     }

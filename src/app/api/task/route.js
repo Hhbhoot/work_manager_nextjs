@@ -42,13 +42,13 @@ export const GET = async (request) => {
 };
 
 export const POST = async (request) => {
-  const { userId, title, description, dueDate } = await request.json();
+  const { userId, title, description, dueDate, status } = await request.json();
 
-  if (!userId || !title || !description) {
+  if (!userId || !title || !description || !status) {
     return NextResponse.json(
       {
         statusText: "Bad Request",
-        message: "User ID, title, and description are required",
+        message: "User ID, title, description and status are required",
       },
       { status: 400 }
     );
@@ -67,6 +67,7 @@ export const POST = async (request) => {
       title,
       description,
       dueDate,
+      status,
     });
 
     return NextResponse.json(
