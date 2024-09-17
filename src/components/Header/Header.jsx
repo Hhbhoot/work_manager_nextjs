@@ -7,10 +7,10 @@ const Header = () => {
   const { user, handleLogout } = useAuthContex();
   return (
     <div className="w-full bg-blue-700">
-      <div className="flex items-center justify-between px-10 h-12">
+      <div className="flex items-center justify-between flex-wrap px-4 md:px-10 h-12">
         <div className="text-base">
           <Link href="/">
-            <h1 className="text-white font-bold">Work Manager</h1>
+            <h1 className="text-white font-bold ">Work Manager</h1>
           </Link>
         </div>
         <div>

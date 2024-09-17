@@ -10,7 +10,7 @@ export const useAuthContex = () => useContext(authContex);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
-  const pathname = usePathname(); // Get the current path
+  const pathname = usePathname();
 
   const router = useRouter();
 
@@ -29,7 +29,11 @@ export const AuthProvider = ({ children }) => {
   const value = { user, setUser, handleLogout };
 
   useEffect(() => {
-    if (pathname === "/login" || pathname === "/signup") {
+    if (
+      pathname === "/login" ||
+      pathname === "/signup" ||
+      pathname === "/contact"
+    ) {
       return;
     }
 

@@ -92,27 +92,23 @@ const SignUp = () => {
 
   return (
     <div className="w-full my-10 text-white " id="signup-section">
-      <div className="flex items-center justify-around">
+      <div className="flex items-center justify-around flex-wrap">
         <div className="">
           <Image
             src={SignUpSvg}
             alt="logo"
-            className="rounded-xl"
+            className="rounded-xl object-cover"
             width={400}
-            height={200}
-            style={{
-              objectFit: "cover",
-              objectPosition: "center",
-              borderRadius: "20px",
-            }}
+            height={300}
+            sizes="(max-width: 640px) 150px, (max-width: 1024px) 300px, 400px"
           />
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-start justify-center mt-6 w-[45%] gap-y-5"
+          className="flex flex-col items-start justify-center mt-6 w-[80%] md:w-[45%] gap-y-5"
         >
-          <div className="flex  items-center justify-between gap-5 w-full">
+          <div className="flex flex-col md:flex-row items-center justify-between  gap-5 w-full">
             <div className="w-full flex flex-col space-y-2">
               <label htmlFor="name" className="px-1">
                 Name
@@ -143,7 +139,7 @@ const SignUp = () => {
               />
             </div>
           </div>
-          <div className="flex  items-center justify-between gap-5 w-full">
+          <div className="flex flex-col md:flex-row items-center justify-between  gap-5 w-full">
             <div className="w-full flex flex-col space-y-2 relative">
               <label htmlFor="gender" className="px-1">
                 Gender
@@ -199,7 +195,7 @@ const SignUp = () => {
             />
           </div>
 
-          <div className="flex  items-center justify-between gap-5 w-full">
+          <div className="flex flex-col md:flex-row items-center justify-between  gap-5 w-full">
             <div className="w-full flex flex-col space-y-2">
               <label htmlFor="password" className="px-1">
                 Password

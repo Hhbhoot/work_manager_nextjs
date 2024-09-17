@@ -55,7 +55,7 @@ const Login = () => {
 
   return (
     <div className="w-full my-10 text-white ">
-      <div className="flex items-center justify-center gap-24 w-full">
+      <div className="flex items-center justify-center flex-wrap md:gap-24 w-full">
         <div className=" ">
           <Image
             src={userLoginSvg}
@@ -72,7 +72,7 @@ const Login = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-start justify-center     w-[35%]  gap-y-5"
+          className="flex flex-col items-start justify-center w-[80%] md:w-[35%]  gap-y-5"
         >
           <div className="w-full flex flex-col space-y-2">
             <label htmlFor="email" className="px-1 ">

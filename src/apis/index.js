@@ -27,3 +27,6 @@ export const logout = async (params, headers) =>
 
 export const getUserTasks = async (userId, params, headers) =>
   http.get(`/api/task?userId=${userId}`, { params, headers });
+
+export const deleteTask = async (taskId, params, headers) =>
+  http.delete(`/api/task/${taskId}`, { params, headers });

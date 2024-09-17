@@ -1,9 +1,10 @@
 "use client";
-import { getUserTasks } from "@/apis";
-import { Tasks } from "@/components";
+import { deleteTask, getUserTasks } from "@/apis";
+import { NoTasks, Tasks } from "@/components";
 import { useAuthContex } from "@/Contex/AuthContex";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const ShowTask = () => {
   const { user } = useAuthContex();
@@ -24,6 +25,43 @@ const ShowTask = () => {
     if (userId) fetchUserTasks();
   }, [userId]);
 
+  const handleDelete = async (taskId) => {
+    try {
+      const { data } = await deleteTask(taskId);
+      if (data?.status !== "success") throw new Error(data?.message);
+
+      const filterTasks = (tasks) => {
+        return tasks.filter((task) => task._id != taskId);
+      };
+      setTasks(filterTasks);
+    } catch (error) {
+      console.log(error);
+      toast.error("Error deleting task");
+    }
+  };
+
+  const deleteUserTask = (task) => {
+    // Show the confirmation box using SweetAlert
+    Swal.fire({
+      title: "Are you sure you want to delete this task?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handleDelete(task._id);
+        Swal.fire({
+          title: "Deleted!",
+          text: `Your Task "${task.title}" has been deleted.`,
+          icon: "success",
+        });
+      }
+    });
+  };
+
   return (
     <div className="flex items-center justify-center my-10">
       {tasks?.length > 0 ? (
@@ -36,12 +74,16 @@ const ShowTask = () => {
           </div>
           <div className="flex flex-col gap-4">
             {tasks?.map((task) => (
-              <Tasks tasks={task} key={task?._id} />
+              <Tasks
+                tasks={task}
+                key={task?._id}
+                handleDelete={deleteUserTask}
+              />
             ))}
           </div>
         </div>
       ) : (
-        <div className="text-2xl font-semibold">No tasks found</div>
+        <NoTasks />
       )}
     </div>
   );
