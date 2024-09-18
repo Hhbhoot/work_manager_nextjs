@@ -4,14 +4,14 @@ import welcomeSvg from "../../../public/img/welcome.svg";
 import Link from "next/link";
 const WelcomeBanner = () => {
   return (
-    <div className="bg-blue-500 text-white p-6 shadow-md flex items-center justify-around ">
+    <div className="bg-black text-white p-6 shadow-md flex items-center justify-around mt-5">
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-3xl font-bold mb-2">Welcome to Task Manager</h1>
         <p className="text-lg">
           Manage your tasks efficiently and stay productive!
         </p>
         <Link href="/add-task">
-          <button className="mt-4 px-6 py-2 bg-white text-blue-500 font-semibold rounded-lg hover:bg-gray-200">
+          <button className="mt-4 px-6 py-2 bg-white text-black font-semibold rounded-lg hover:bg-gray-200">
             Get Started
           </button>
         </Link>

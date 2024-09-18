@@ -26,7 +26,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <div className="bg-blue-500 p-8 mt-5 shadow-lg">
+    <div className="bg-black p-8  shadow-lg">
       <h2 className="text-3xl font-bold text-center text-white mb-8">
         What Our Users Say
       </h2>
@@ -34,7 +34,7 @@ const Testimonials = () => {
         {testimonials.map((testimonial, index) => (
           <div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center"
+            className="bg-[#dbd8e3] p-6 rounded-lg shadow-lg flex flex-col items-center"
           >
             <img
               src={testimonial.image}

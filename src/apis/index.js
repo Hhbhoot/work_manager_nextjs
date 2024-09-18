@@ -30,3 +30,6 @@ export const getUserTasks = async (userId, params, headers) =>
 
 export const deleteTask = async (taskId, params, headers) =>
   http.delete(`/api/task/${taskId}`, { params, headers });
+
+export const sendMail = async (data, params, headers) =>
+  http.post("/api/mail", data, { params, headers });

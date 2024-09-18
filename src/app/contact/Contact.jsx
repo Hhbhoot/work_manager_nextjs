@@ -1,6 +1,8 @@
 "use client";
 
+import { sendMail } from "@/apis";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -18,19 +20,29 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { name, email, message } = formData;
 
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    if (!name || !email || !message) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+    const toasId = toast.loading("Sending Email...");
 
-    if (response.ok) {
-      alert("Message sent successfully!");
-    } else {
-      alert("Failed to send message.");
+    try {
+      const { data } = await sendMail(formData);
+      if (data?.status !== "success") throw new Error(data?.message);
+
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+      });
+
+      toast.success(data?.message, { id: toasId });
+    } catch (error) {
+      toast.error(error?.data?.response?.message || error?.message, {
+        id: toasId,
+      });
     }
   };
   return (

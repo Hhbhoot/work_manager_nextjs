@@ -25,15 +25,15 @@ const features = [
 
 const Features = () => {
   return (
-    <div className="bg-blue-400 p-8 mt-5 shadow-md">
-      <h2 className="text-3xl font-bold text-center text-white mb-6">
+    <div className="bg-black p-8  shadow-md">
+      <h2 className="text-3xl font-bold text-center text-white mb-10">
         Key Features
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
         {features.map((feature, index) => (
           <div
             key={index}
-            className="bg-white p-6 rounded-lg shadow-lg flex items-start"
+            className="bg-[#dbd8e3] p-6 rounded-lg shadow-lg flex items-start"
           >
             <div className="mr-4">
               {feature.icon} {/* Displaying icon */}
