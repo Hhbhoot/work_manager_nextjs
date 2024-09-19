@@ -63,7 +63,7 @@ const ShowTask = () => {
   };
 
   return (
-    <div className="flex items-center justify-center my-10">
+    <div className="flex items-center justify-center my-10 mx-4">
       {tasks?.length > 0 ? (
         <div className="flex flex-col gap-4">
           {" "}

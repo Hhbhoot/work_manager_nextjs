@@ -45,6 +45,33 @@ const Contact = () => {
       });
     }
   };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { name, email, message } = formData;
+
+  //   if (!name || !email || !message) {
+  //     toast.error("Please fill in all fields");
+  //     return;
+  //   }
+
+  //   const mailtoLink = `mailto:taskmanager@gmail.com?subject=Contact%20from%20${encodeURIComponent(
+  //     name
+  //   )}&body=Name:%20${encodeURIComponent(name)}%0AEmail:%20${encodeURIComponent(
+  //     email
+  //   )}%0A%0A${encodeURIComponent(message)}`;
+
+  //   // Open Gmail with pre-filled data
+  //   window.location.href = mailtoLink;
+
+  //   // Optionally reset the form
+  //   setFormData({
+  //     name: "",
+  //     email: "",
+  //     message: "",
+  //   });
+
+  //   toast.success("Redirecting to Gmail...");
+  // };
   return (
     <div className="min-h-screen  flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">

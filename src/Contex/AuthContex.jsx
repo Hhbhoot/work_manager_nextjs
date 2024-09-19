@@ -32,7 +32,8 @@ export const AuthProvider = ({ children }) => {
     if (
       pathname === "/login" ||
       pathname === "/signup" ||
-      pathname === "/contact"
+      pathname === "/contact" ||
+      pathname === "/signupForm"
     ) {
       return;
     }

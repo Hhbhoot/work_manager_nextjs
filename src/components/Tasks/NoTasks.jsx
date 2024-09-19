@@ -4,7 +4,7 @@ import React from "react";
 
 const NoTasks = () => {
   return (
-    <div className="bg-gray-200 p-8 rounded-lg shadow-lg text-center">
+    <div className="bg-gray-200 p-8 rounded-lg shadow-lg text-center mx-4">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">No Tasks Found</h2>
       <p className="text-gray-600 mb-6">
         You haven’t added any tasks yet. Start organizing your work by creating

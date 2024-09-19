@@ -65,15 +65,15 @@ const AddTaskPage = () => {
   return (
     <div className="w-full my-10 text-white ">
       <div className="flex items-center justify-center">
-        <Image src={loginsvg} alt="logo" width={200} height={200} />
+        <Image src={loginsvg} alt="logo" width={250} height={200} />
       </div>
-      <div className="text-center mt-2">
+      <div className="text-center mt-4">
         <h1 className="text-xl">Add Your Task Here</h1>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col items-start justify-center mx-auto mt-4 w-[35%] gap-y-5"
+        className="flex flex-col items-start justify-center mx-auto mt-4 w-[90%] md:w-[35%] gap-y-5"
       >
         <div className="w-full flex flex-col space-y-2">
           <label htmlFor="task_title" className="px-1">
