@@ -11,9 +11,12 @@ export const GET = (request) => {
     }
   );
 
-  response.cookies?.set("AuthToken", "", {
-    expires: new Date(0),
+  response.cookies.set("AuthToken", "", {
+    httpOnly: true,
+    sameSite: "strict",
+    path: "/",
+    expires: new Date(0), // Set the expiration date to the past to remove it
+    secure: process.env.NODE_ENV === "production",
   });
-
   return response;
 };
