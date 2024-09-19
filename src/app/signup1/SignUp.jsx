@@ -6,6 +6,7 @@ import Image from "next/image";
 import toast from "react-hot-toast";
 import { signup } from "@/apis";
 import { useRouter } from "next/navigation";
+
 const SignUp = () => {
   const router = useRouter();
 
