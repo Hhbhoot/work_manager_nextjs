@@ -10,6 +10,7 @@ export const useAuthContex = () => useContext(authContex);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [isAuth, setIsAuth] = useState(false);
 
   const router = useRouter();
 
@@ -18,6 +19,7 @@ export const AuthProvider = ({ children }) => {
       const { data } = await logout();
       if (data?.status !== "success") throw new Error(data?.message);
       setUser(null);
+      setIsAuth(false);
       toast.success(data?.message);
       router.push("/login");
     } catch (err) {
@@ -25,7 +27,23 @@ export const AuthProvider = ({ children }) => {
       toast.error(err?.data?.response?.message || err?.message);
     }
   };
-  const value = { user, setUser, handleLogout };
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const { data } = await validate();
+        if (data?.status !== "success") throw new Error(data?.message);
+        setUser(data?.data?.user);
+        setIsAuth(true);
+      } catch (err) {
+        console.error(err);
+        setIsAuth(false);
+      }
+    };
+    checkAuth();
+  }, []);
+
+  const value = { user, setUser, handleLogout, isAuth, setIsAuth };
 
   return <authContex.Provider value={value}>{children}</authContex.Provider>;
 };

@@ -11,7 +11,7 @@ import { useAuthContex } from "@/Contex/AuthContex";
 
 const SignUp = () => {
   const router = useRouter();
-  const { user, setUser } = useAuthContex();
+  const { setUser, setIsAuth } = useAuthContex();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
@@ -50,7 +50,7 @@ const SignUp = () => {
         throw new Error(data?.message);
       }
       setUser(data?.data?.user);
-
+      setIsAuth(true);
       toast.success(data?.message, {
         id: toastId,
       });

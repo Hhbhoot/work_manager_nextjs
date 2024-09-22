@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const Header = () => {
-  const { user, handleLogout } = useAuthContex();
+  const { user, handleLogout, isAuth } = useAuthContex();
+
   const pathname = usePathname();
   return (
     <div className="w-full bg-blue-700">
@@ -16,7 +17,7 @@ const Header = () => {
           </Link>
         </div>
         <div>
-          {user && (
+          {isAuth && (
             <ul className="flex items-center gap-5">
               <li>
                 <Link href="/">
@@ -37,7 +38,7 @@ const Header = () => {
           )}
         </div>
         <div>
-          {!user ? (
+          {!isAuth ? (
             <ul className="flex items-center gap-5">
               <li className={`${pathname === "/signup" ? "hidden" : "block"}`}>
                 <Link href="/signup">

@@ -25,7 +25,6 @@ export const GET = async (request) => {
       },
     });
   } catch (error) {
-    console.log(error);
     const response = NextResponse.json(
       {
         status: "fail",

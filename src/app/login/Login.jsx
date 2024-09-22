@@ -8,7 +8,7 @@ import userLoginSvg from "../../../public/img/userLogin.svg";
 import { useAuthContex } from "@/Contex/AuthContex";
 const Login = () => {
   const router = useRouter();
-  const { user, setUser } = useAuthContex();
+  const { user, setUser, isAuth, setIsAuth } = useAuthContex();
 
   const [details, setDetails] = useState({
     email: "",
@@ -37,8 +37,8 @@ const Login = () => {
       toast.success(data?.message, {
         id: toastId,
       });
-
       setUser(data?.data?.user);
+      setIsAuth(true);
 
       setDetails({
         email: "",
