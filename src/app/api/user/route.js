@@ -91,7 +91,9 @@ export const POST = async (request) => {
         status: "success",
         statusText: "Created",
         message: "User created successfully",
-        data: newUser,
+        data: {
+          user: newUser,
+        },
       },
       {
         status: 201,

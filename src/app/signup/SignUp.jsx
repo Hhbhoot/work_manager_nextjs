@@ -7,9 +7,11 @@ import Step4 from "@/components/SignUp/Step4";
 import toast from "react-hot-toast";
 import { signup } from "@/apis";
 import { useRouter } from "next/navigation";
+import { useAuthContex } from "@/Contex/AuthContex";
 
 const SignUp = () => {
   const router = useRouter();
+  const { user, setUser } = useAuthContex();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
@@ -47,6 +49,7 @@ const SignUp = () => {
       if (data?.status !== "success") {
         throw new Error(data?.message);
       }
+      setUser(data?.data?.user);
 
       toast.success(data?.message, {
         id: toastId,
