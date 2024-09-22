@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
       } catch (err) {
         console.error(err);
         setIsAuth(false);
+        router.push("/login");
       }
     };
     checkAuth();
