@@ -26,7 +26,7 @@ export const validate = async (token, params, headers) =>
   });
 
 export const logout = async (params, headers) =>
-  http.get("/api/user/logout", { params, headers });
+  http.post("/api/user/logout", { params, headers });
 
 export const getUserTasks = async (userId, params, headers) =>
   http.get(`/api/task?userId=${userId}`, { params, headers });
