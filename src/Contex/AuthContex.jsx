@@ -28,21 +28,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const { data } = await validate();
-        if (data?.status !== "success") throw new Error(data?.message);
-        setUser(data?.data?.user);
-        setIsAuth(true);
-      } catch (err) {
-        console.error(err);
-        setIsAuth(false);
-        router.push("/login");
-      }
-    };
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     try {
+  //       const { data } = await validate();
+  //       if (data?.status !== "success") throw new Error(data?.message);
+  //       setUser(data?.data?.user);
+  //       setIsAuth(true);
+  //     } catch (err) {
+  //       console.error(err);
+  //       setIsAuth(false);
+  //       router.push("/login");
+  //     }
+  //   };
+  //   checkAuth();
+  // }, []);
 
   const value = { user, setUser, handleLogout, isAuth, setIsAuth };
 

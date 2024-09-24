@@ -6,15 +6,32 @@ import { connectDB } from "@/helpers/db/db";
 connectDB();
 
 export const GET = async (request) => {
-  const token = request?.cookies?.get("AuthToken")?.value;
+  const token = request?.headers?.get("Authorization")?.split(" ")[1];
+
+  // const token = request?.cookies?.get("AuthToken")?.value;
   if (!token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    console.log("token not found");
+    return NextResponse.json(
+      {
+        status: "fail",
+        message: "UnAuthorized",
+        data: null,
+      },
+      {
+        status: 400,
+      }
+    );
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     const user = await User.findById(decoded.userId);
     if (!user) {
-      return NextResponse.redirect(new URL("/login", request.url));
+      console.log("user not found");
+      return NextResponse.json({
+        status: "fail",
+        message: "UnAuthorized",
+        data: null,
+      });
     }
 
     return NextResponse.json({
@@ -36,9 +53,15 @@ export const GET = async (request) => {
       }
     );
 
-    response.cookies.set("AuthToken", "", {
-      expires: new Date(0),
-    });
+    // response.cookies.set("AuthToken", "", {
+    //   expires: new Date(0),
+    //   path: "/",
+    //   httpOnly: true,
+    //   sameSite: "strict",
+    //   secure: process.env.NODE_ENV === "production",
+    //   maxAge: 0,
+    //   domain: "https://work-manager-by-hhb.vercel.app",
+    // });
 
     return response;
   }

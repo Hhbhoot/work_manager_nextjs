@@ -1,47 +1,61 @@
-import { NextRequest, NextResponse } from "next/server";
-import { validate } from "./apis"; // Assume this function exists to verify the token
+import { NextResponse } from "next/server";
+import { validate } from "./apis"; // Assuming this is the correct import path
+
+const PUBLIC_PATHS = ["/login", "/signup"];
+const SHARED_ACCESS_PATHS = ["/contact"];
+const HOME_PATH = "/";
 
 export const middleware = async (request) => {
+  const path = request.nextUrl.pathname;
   const token = request.cookies.get("AuthToken")?.value;
-  const path = request?.nextUrl?.pathname;
-  const isPublicPath =
-    path === "/login" || path === "/signup" || path === "/contact";
 
-  // Allow access to API routes without token verification
-  if (path.startsWith("/api/")) {
+  // Handle public paths
+  if (PUBLIC_PATHS.some((publicPath) => path.startsWith(publicPath))) {
+    // If authenticated, redirect to home
+    if (token) {
+      return NextResponse.redirect(new URL(HOME_PATH, request.url));
+    }
     return NextResponse.next();
   }
 
-  // Allow access to public paths without a token
-  if (isPublicPath && !token) {
+  // Allow shared access paths for both authenticated and unauthenticated users
+  if (SHARED_ACCESS_PATHS.some((sharedPath) => path.startsWith(sharedPath))) {
     return NextResponse.next();
   }
 
-  // Redirect to login if no token and not a public path
-  if (!token && !isPublicPath) {
+  // Allow API routes to pass through
+  if (path.startsWith("/api")) {
+    return NextResponse.next();
+  }
+
+  // Redirect to login if no token is present
+  if (!token) {
+    console.log("Token not found");
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Verify token if present
-  if (token) {
-    try {
-      await validate();
-      // If token is valid and it's a public path, redirect to home
-      if (isPublicPath) {
-        return NextResponse.redirect(new URL("/", request.url));
-      }
-      // If token is valid and it's not a public path, allow access
-      return NextResponse.next();
-    } catch (error) {
-      // If token is invalid, redirect to login
+  // Validate token for protected routes
+  try {
+    const { data } = await validate(token);
+    if (data?.status !== "success") {
       return NextResponse.redirect(new URL("/login", request.url));
     }
+  } catch (error) {
+    console.error("Token validation error:", error);
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // Default case: allow access
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ["/", "/login", "/signup", "/add-task", "/show-task", "/api/:path*"],
+  matcher: [
+    "/",
+    "/login",
+    "/signup",
+    "/contact",
+    "/add-task",
+    "/show-task",
+    "/api/:path*",
+  ],
 };

@@ -54,6 +54,9 @@ const SignUp = () => {
       toast.success(data?.message, {
         id: toastId,
       });
+      console.log("pushing to home page");
+      router.push("/");
+      console.log("pushing to home page 1");
 
       setFormData({
         name: "",
@@ -64,8 +67,6 @@ const SignUp = () => {
         about: "",
         age: "",
       });
-
-      router.push("/");
     } catch (err) {
       toast.error(err?.response?.data?.message || err.message, {
         id: toastId,

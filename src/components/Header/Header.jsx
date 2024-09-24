@@ -6,6 +6,8 @@ import React from "react";
 
 const Header = () => {
   const { user, handleLogout, isAuth } = useAuthContex();
+  console.log(user);
+  console.log(JSON.stringify(user, null, 2));
 
   const pathname = usePathname();
   return (

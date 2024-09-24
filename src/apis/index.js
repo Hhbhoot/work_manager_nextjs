@@ -19,8 +19,11 @@ export const signup = async (data, params, headers) =>
 export const addTask = async (data, params, headers) =>
   http.post("/api/task", data, { params, headers });
 
-export const validate = async (params, headers) =>
-  http.get("/api/user/current", { params, headers });
+export const validate = async (token, params, headers) =>
+  http.get(`/api/user/current`, {
+    params,
+    headers: { ...headers, Authorization: `Bearer ${token}` },
+  });
 
 export const logout = async (params, headers) =>
   http.get("/api/user/logout", { params, headers });

@@ -45,7 +45,9 @@ const Login = () => {
         password: "",
       });
 
+      console.log("pising to home page");
       router.push("/");
+      console.log("pising to home page 1");
     } catch (error) {
       toast.error(error?.response?.data?.message || error.message, {
         id: toastId,
