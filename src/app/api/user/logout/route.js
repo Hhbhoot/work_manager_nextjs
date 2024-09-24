@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export const GET = (request) => {
+export async function POST(request) {
   const response = NextResponse.json(
     {
       status: "success",
@@ -18,5 +18,6 @@ export const GET = (request) => {
     expires: new Date(0), // Set the expiration date to the past to remove it
     secure: process.env.NODE_ENV === "production",
   });
+
   return response;
-};
+}
