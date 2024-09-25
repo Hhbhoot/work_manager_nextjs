@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation"; // Import the hook to get the cur
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie"; // Import js-cookie for client-side cookie handling
+
 export const authContex = createContext();
 
 export const useAuthContex = () => useContext(authContex);
@@ -11,7 +13,7 @@ export const useAuthContex = () => useContext(authContex);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [isAuth, setIsAuth] = useState(false);
-
+  const pathname = usePathname();
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -29,9 +31,25 @@ export const AuthProvider = ({ children }) => {
   };
 
   // useEffect(() => {
+  //   if (
+  //     pathname === "/login" ||
+  //     pathname === "/signup" ||
+  //     pathname === "/contact"
+  //   ) {
+  //     return;
+  //   }
   //   const checkAuth = async () => {
+  //     const token = Cookies.get("AuthToken");
+  //     console.log("authcookie", token);
+
+  //     if (!token) {
+  //       setIsAuth(false);
+  //       router.push("/login");
+  //       return;
+  //     }
+
   //     try {
-  //       const { data } = await validate();
+  //       const { data } = await validate(token); // Pass token to the validate API
   //       if (data?.status !== "success") throw new Error(data?.message);
   //       setUser(data?.data?.user);
   //       setIsAuth(true);
@@ -41,8 +59,9 @@ export const AuthProvider = ({ children }) => {
   //       router.push("/login");
   //     }
   //   };
+
   //   checkAuth();
-  // }, []);
+  // }, [router]);
 
   const value = { user, setUser, handleLogout, isAuth, setIsAuth };
 

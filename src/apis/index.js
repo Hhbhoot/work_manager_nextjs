@@ -3,6 +3,7 @@ import { config } from "@/config/config";
 
 export const http = axios.create({
   baseURL: config.BASE_URL,
+  withCredentials: true,
 });
 
 // http.interceptors.request.use((config) => {
