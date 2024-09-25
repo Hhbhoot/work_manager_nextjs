@@ -50,6 +50,8 @@ const SignUp = () => {
         throw new Error(data?.message);
       }
       setUser(data?.data?.user);
+      localStorage?.setItem("AuthToken", data?.data?.token);
+      document.cookie = `token=${data?.data?.token}; path=/`;
       setIsAuth(true);
       toast.success(data?.message, {
         id: toastId,

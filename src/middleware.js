@@ -7,8 +7,9 @@ const HOME_PATH = "/";
 
 export const middleware = async (request) => {
   const path = request.nextUrl.pathname;
-  const token = request.cookies.get("AuthToken")?.value;
-  // console.log(token);
+  const token = request?.cookies?.get("token")?.value;
+  // console.log("middleware token", token);
+
   // // Handle public paths
   if (PUBLIC_PATHS.some((publicPath) => path.startsWith(publicPath))) {
     // If authenticated, redirect to home
@@ -34,9 +35,8 @@ export const middleware = async (request) => {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // // Validate token for protected routes
   // try {
-  //   const { data } = await validate(token);
+  //   const { data } = await validate();
   //   if (data?.status !== "success") {
   //     return NextResponse.redirect(new URL("/login", request.url));
   //   }
@@ -44,7 +44,6 @@ export const middleware = async (request) => {
   //   console.error("Token validation error:", error);
   //   return NextResponse.redirect(new URL("/login", request.url));
   // }
-
   return NextResponse.next();
 };
 

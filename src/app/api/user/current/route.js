@@ -6,8 +6,10 @@ import { connectDB } from "@/helpers/db/db";
 connectDB();
 
 export const GET = async (request) => {
-  const token = request?.headers?.get("Authorization")?.split(" ")[1];
-
+  const token = request?.headers?.get("Authorization");
+  // const cookieToken = request?.cookies?.get("token")?.value;
+  // console.log("token", token);
+  // console.log("cookieToken", cookieToken);
   // const token = request?.cookies?.get("AuthToken")?.value;
   if (!token) {
     console.log("token not found");

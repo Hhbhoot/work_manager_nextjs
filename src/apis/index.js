@@ -3,13 +3,12 @@ import { config } from "@/config/config";
 
 export const http = axios.create({
   baseURL: config.BASE_URL,
-  withCredentials: true,
 });
 
-// http.interceptors.request.use((config) => {
-//   config.headers.Authorization = localStorage.getItem("authToken") || null;
-//   return config;
-// });
+http.interceptors.request.use((config) => {
+  config.headers.Authorization = localStorage.getItem("AuthToken") || null;
+  return config;
+});
 
 export const userLogin = async (data, params, headers) =>
   http.post("/api/user/login", data, { params, headers });
@@ -20,10 +19,10 @@ export const signup = async (data, params, headers) =>
 export const addTask = async (data, params, headers) =>
   http.post("/api/task", data, { params, headers });
 
-export const validate = async (token, params, headers) =>
+export const validate = async (params, headers) =>
   http.get(`/api/user/current`, {
     params,
-    headers: { ...headers, Authorization: `Bearer ${token}` },
+    headers,
   });
 
 export const logout = async (params, headers) =>

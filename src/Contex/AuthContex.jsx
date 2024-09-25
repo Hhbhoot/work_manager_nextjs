@@ -17,50 +17,51 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      const { data } = await logout();
-      if (data?.status !== "success") throw new Error(data?.message);
+      // const { data } = await logout();
+      // if (data?.status !== "success") throw new Error(data?.message);
+      localStorage.removeItem("AuthToken");
+      document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
       setUser(null);
       setIsAuth(false);
-      toast.success(data?.message);
+      toast.success("User logged out successfully");
       router.push("/login");
     } catch (err) {
       console.error(err);
-      toast.error(err?.data?.response?.message || err?.message);
+      toast.error("Failed to logout");
     }
   };
 
-  // useEffect(() => {
-  //   if (
-  //     pathname === "/login" ||
-  //     pathname === "/signup" ||
-  //     pathname === "/contact"
-  //   ) {
-  //     return;
-  //   }
-  //   const checkAuth = async () => {
-  //     const token = Cookies.get("AuthToken");
-  //     console.log("authcookie", token);
+  useEffect(() => {
+    if (
+      pathname === "/login" ||
+      pathname === "/signup" ||
+      pathname === "/contact"
+    ) {
+      return;
+    }
+    const checkAuth = async () => {
+      const token = localStorage.getItem("AuthToken");
 
-  //     if (!token) {
-  //       setIsAuth(false);
-  //       router.push("/login");
-  //       return;
-  //     }
+      if (!token) {
+        setIsAuth(false);
+        router.push("/login");
+        return;
+      }
 
-  //     try {
-  //       const { data } = await validate(token); // Pass token to the validate API
-  //       if (data?.status !== "success") throw new Error(data?.message);
-  //       setUser(data?.data?.user);
-  //       setIsAuth(true);
-  //     } catch (err) {
-  //       console.error(err);
-  //       setIsAuth(false);
-  //       router.push("/login");
-  //     }
-  //   };
+      try {
+        const { data } = await validate(); // Pass token to the validate API
+        if (data?.status !== "success") throw new Error(data?.message);
+        setUser(data?.data?.user);
+        setIsAuth(true);
+      } catch (err) {
+        console.error(err);
+        setIsAuth(false);
+        router.push("/login");
+      }
+    };
 
-  //   checkAuth();
-  // }, [router]);
+    checkAuth();
+  }, [router]);
 
   const value = { user, setUser, handleLogout, isAuth, setIsAuth };
 

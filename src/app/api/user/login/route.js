@@ -58,6 +58,7 @@ export const POST = async (request) => {
         message: "User logged in successfully",
         data: {
           user,
+          token,
         },
       },
       {
@@ -65,14 +66,14 @@ export const POST = async (request) => {
       }
     );
 
-    response.cookies.set("AuthToken", token, {
-      httpOnly: true,
-      sameSite: "strict",
-      path: "/",
-      maxAge: 10 * 24 * 60 * 60,
-      expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
-      secure: process.env.NODE_ENV === "production",
-    });
+    // response.cookies.set("AuthToken", token, {
+    //   httpOnly: true,
+    //   sameSite: "strict",
+    //   path: "/",
+    //   maxAge: 10 * 24 * 60 * 60,
+    //   expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+    //   secure: process.env.NODE_ENV === "production",
+    // });
 
     return response;
   } catch (error) {

@@ -34,6 +34,8 @@ const Login = () => {
         throw new Error(data?.message);
       }
 
+      localStorage.setItem("AuthToken", data?.data?.token);
+      document.cookie = `token=${data?.data?.token}; path=/`;
       toast.success(data?.message, {
         id: toastId,
       });
