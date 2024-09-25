@@ -29,20 +29,31 @@ export const GET = async (request) => {
     const user = await User.findById(decoded.userId);
     if (!user) {
       console.log("user not found");
-      return NextResponse.json({
-        status: "fail",
-        message: "UnAuthorized",
-        data: null,
-      });
+      return NextResponse.json(
+        {
+          status: "fail",
+          message: "UnAuthorized",
+          data: null,
+        },
+        {
+          status: 400,
+        }
+      );
     }
 
-    return NextResponse.json({
-      status: "success",
-      message: "User fetched successfully",
-      data: {
-        user,
+    // console.log(user);
+    return NextResponse.json(
+      {
+        status: "success",
+        message: "User fetched successfully",
+        data: {
+          user,
+        },
       },
-    });
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
     const response = NextResponse.json(
       {

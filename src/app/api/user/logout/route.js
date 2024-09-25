@@ -11,12 +11,12 @@ export async function POST(request) {
     }
   );
 
-  response.cookies.set("AuthToken", "", {
+  response.cookies.set("token", "", {
     httpOnly: true,
     sameSite: "strict",
     path: "/",
-    expires: new Date(0), // Set the expiration date to the past to remove it
-    secure: process.env.NODE_ENV === "production",
+    expires: new Date(0),
+    maxAge: 0,
   });
 
   return response;

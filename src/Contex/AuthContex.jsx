@@ -17,10 +17,10 @@ export const AuthProvider = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      // const { data } = await logout();
-      // if (data?.status !== "success") throw new Error(data?.message);
+      const { data } = await logout();
+      if (data?.status !== "success") throw new Error(data?.message);
       localStorage.removeItem("AuthToken");
-      document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
+      // document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
       setUser(null);
       setIsAuth(false);
       toast.success("User logged out successfully");

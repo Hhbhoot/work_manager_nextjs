@@ -101,13 +101,13 @@ export const POST = async (request) => {
       }
     );
 
-    // response.cookies.set("AuthToken", token, {
-    //   httpOnly: true,
-    //   maxAge: 10 * 24 * 60 * 60,
-    //   sameSite: "strict",
-    //   path: "/",
-    //   secure: process.env.NODE_ENVIRONMENT === "production",
-    // });
+    response.cookies.set("token", token, {
+      httpOnly: true,
+      maxAge: 10 * 24 * 60 * 60,
+      sameSite: "strict",
+      path: "/",
+      secure: process.env.NODE_ENVIRONMENT === "production",
+    });
 
     return response;
   } catch (error) {
