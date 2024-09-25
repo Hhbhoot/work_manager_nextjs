@@ -1,10 +1,9 @@
 "use client";
 import { logout, validate } from "@/apis";
-import { usePathname } from "next/navigation"; // Import the hook to get the current path
+import { usePathname } from "next/navigation";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import Cookies from "js-cookie"; // Import js-cookie for client-side cookie handling
 
 export const authContex = createContext();
 
