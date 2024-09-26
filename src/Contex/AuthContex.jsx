@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
       if (!token) {
         setIsAuth(false);
-        router.push("/login");
+        router.replace("/login");
         return;
       }
 
