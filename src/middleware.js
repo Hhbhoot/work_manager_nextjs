@@ -35,19 +35,19 @@ export const middleware = async (request) => {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  try {
-    const { data } = await axios.get(`${apiUrl.BASE_URL}/api/user/current`, {
-      headers: {
-        Authorization: token,
-      },
-    });
-    if (data?.status !== "success") {
-      return NextResponse.redirect(new URL("/login", request.url));
-    }
-  } catch (error) {
-    console.error("Token validation error:", error);
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  // try {
+  //   const { data } = await axios.get(`${apiUrl.BASE_URL}/api/user/current`, {
+  //     headers: {
+  //       Authorization: token,
+  //     },
+  //   });
+  //   if (data?.status !== "success") {
+  //     return NextResponse.redirect(new URL("/login", request.url));
+  //   }
+  // } catch (error) {
+  //   console.error("Token validation error:", error);
+  //   return NextResponse.redirect(new URL("/login", request.url));
+  // }
   return NextResponse.next();
 };
 

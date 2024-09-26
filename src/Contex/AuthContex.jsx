@@ -51,16 +51,16 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      try {
-        const { data } = await validate(); // Pass token to the validate API
-        if (data?.status !== "success") throw new Error(data?.message);
-        setUser(data?.data?.user);
-        setIsAuth(true);
-      } catch (err) {
-        console.error(err);
-        setIsAuth(false);
-        router.push("/login");
-      }
+      // try {
+      //   const { data } = await validate(); // Pass token to the validate API
+      //   if (data?.status !== "success") throw new Error(data?.message);
+      //   setUser(data?.data?.user);
+      //   setIsAuth(true);
+      // } catch (err) {
+      //   console.error(err);
+      //   setIsAuth(false);
+      //   router.push("/login");
+      // }
     };
 
     checkAuth();
