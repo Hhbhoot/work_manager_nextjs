@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     checkAuth();
-  }, [pathname]);
+  }, [pathname, setIsAuth, router]);
 
   const value = { user, setUser, handleLogout, isAuth, setIsAuth };
 
