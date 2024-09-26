@@ -47,10 +47,9 @@ const Login = () => {
         password: "",
       });
 
-      console.log("pushng to home page");
-      router.replace("/");
-
-      console.log("pushing to home page 1");
+      setTimeout(() => {
+        router.replace("/");
+      }, 300);
     } catch (error) {
       toast.error(error?.response?.data?.message || error.message, {
         id: toastId,

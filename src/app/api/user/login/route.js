@@ -72,7 +72,7 @@ export const POST = async (request) => {
       path: "/",
       maxAge: 10 * 24 * 60 * 60,
       expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
-      secure: process.env.NODE_ENV === "production",
+      secure: true,
     });
 
     return response;

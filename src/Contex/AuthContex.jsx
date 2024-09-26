@@ -24,7 +24,9 @@ export const AuthProvider = ({ children }) => {
       setUser(null);
       setIsAuth(false);
       toast.success("User logged out successfully");
-      router.push("/login");
+      setTimeout(() => {
+        router.replace("/login");
+      }, 300);
     } catch (err) {
       console.error(err);
       toast.error("Failed to logout");
@@ -44,6 +46,7 @@ export const AuthProvider = ({ children }) => {
 
       if (!token) {
         setIsAuth(false);
+        setUser(null);
         router.replace("/login");
         return;
       }

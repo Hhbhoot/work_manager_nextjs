@@ -56,9 +56,9 @@ const SignUp = () => {
       toast.success(data?.message, {
         id: toastId,
       });
-      console.log("pushing to home page");
-      router.push("/");
-      console.log("pushing to home page 1");
+      setTimeout(() => {
+        router.replace("/");
+      }, 300);
 
       setFormData({
         name: "",

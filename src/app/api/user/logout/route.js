@@ -16,7 +16,7 @@ export async function POST(request) {
     sameSite: "strict",
     path: "/",
     expires: new Date(0),
-    maxAge: 0,
+    maxAge: -1,
   });
 
   return response;
