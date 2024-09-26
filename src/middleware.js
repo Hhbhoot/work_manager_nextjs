@@ -52,13 +52,5 @@ export const middleware = async (request) => {
 };
 
 export const config = {
-  matcher: [
-    "/",
-    "/login",
-    "/signup",
-    "/contact",
-    "/add-task",
-    "/show-task",
-    "/api/:path*",
-  ],
+  matcher: ["/", "/add-task", "/show-task"],
 };
