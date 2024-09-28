@@ -51,14 +51,19 @@ const SignUp = () => {
       }
       setUser(data?.data?.user);
       localStorage?.setItem("AuthToken", data?.data?.token);
-      document.cookie = `token=${data?.data?.token}; path=/`;
       setIsAuth(true);
       toast.success(data?.message, {
         id: toastId,
       });
+
       setTimeout(() => {
-        router.replace("/");
-      }, 300);
+        if (data?.data?.user) {
+          console.log("pushing");
+          console.log(data?.data?.user);
+          router.push("/");
+          console.log("pushed");
+        }
+      }, 100);
 
       setFormData({
         name: "",

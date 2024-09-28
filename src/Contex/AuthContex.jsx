@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
         if (data?.status !== "success") throw new Error(data?.message);
         setUser(data?.data?.user);
         setIsAuth(true);
+        console.log("user", data?.data?.user);
       } catch (err) {
         console.error(err);
         setIsAuth(false);
@@ -63,8 +64,15 @@ export const AuthProvider = ({ children }) => {
       }
     };
 
-    checkAuth();
+    if (typeof window !== "undefined") {
+      // Check after a slight delay to ensure cookies/localStorage are available
+      setTimeout(() => checkAuth(), 1000); // Add a 300ms delay
+    }
   }, [pathname, setIsAuth, router]);
+
+  useEffect(() => {
+    console.log("Current Environment:", process.env.NODE_ENV);
+  }, []);
 
   const value = { user, setUser, handleLogout, isAuth, setIsAuth };
 

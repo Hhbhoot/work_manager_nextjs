@@ -106,7 +106,7 @@ export const POST = async (request) => {
       maxAge: 10 * 24 * 60 * 60,
       sameSite: "strict",
       path: "/",
-      secure: true,
+      secure: process.env.NODE_ENV !== "development",
     });
 
     return response;

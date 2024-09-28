@@ -7,8 +7,21 @@ const HOME_PATH = "/";
 
 export const middleware = async (request) => {
   const path = request.nextUrl.pathname;
-  const token = request?.cookies?.get("token")?.value;
-  // console.log("middleware token", token);
+  const cookieHeader = request.headers.get("cookie");
+
+  let token;
+
+  if (cookieHeader) {
+    // Parse the cookies and extract the token
+    const cookies = cookieHeader.split(";").reduce((acc, cookie) => {
+      const [name, value] = cookie.split("=").map((c) => c.trim());
+      acc[name] = value;
+      return acc;
+    }, {});
+
+    token = cookies["token"];
+    console.log("JWT Token:", token);
+  }
 
   // // Handle public paths
   if (PUBLIC_PATHS.some((publicPath) => path.startsWith(publicPath))) {
@@ -35,22 +48,9 @@ export const middleware = async (request) => {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  // try {
-  //   const { data } = await axios.get(`${apiUrl.BASE_URL}/api/user/current`, {
-  //     headers: {
-  //       Authorization: token,
-  //     },
-  //   });
-  //   if (data?.status !== "success") {
-  //     return NextResponse.redirect(new URL("/login", request.url));
-  //   }
-  // } catch (error) {
-  //   console.error("Token validation error:", error);
-  //   return NextResponse.redirect(new URL("/login", request.url));
-  // }
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ["/", "/add-task", "/show-task"],
+  matcher: ["/", "/add-task", "/show-task", "/login", "/signup", "/contact"],
 };

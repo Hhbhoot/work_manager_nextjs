@@ -8,6 +8,7 @@ export const http = axios.create({
 
 http.interceptors.request.use((config) => {
   config.headers.Authorization = localStorage.getItem("AuthToken") || null;
+
   return config;
 });
 

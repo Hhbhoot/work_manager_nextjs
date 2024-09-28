@@ -35,7 +35,7 @@ const Login = () => {
       }
 
       localStorage.setItem("AuthToken", data?.data?.token);
-      document.cookie = `token=${data?.data?.token}; path=/`;
+      // document.cookie = `token=${data?.data?.token}; path=/`;
       toast.success(data?.message, {
         id: toastId,
       });
@@ -48,8 +48,14 @@ const Login = () => {
       });
 
       setTimeout(() => {
-        router.replace("/");
-      }, 300);
+        if (data?.data?.user) {
+          console.log(data?.data?.user);
+          console.log(isAuth);
+          console.log("pushing");
+          router.push("/");
+          console.log("pushed");
+        }
+      }, 100);
     } catch (error) {
       toast.error(error?.response?.data?.message || error.message, {
         id: toastId,
